@@ -38,6 +38,7 @@ jobs:
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
         if: always()
+        id: allure-report  # Добавлен ID для связи шагов
         with:
           allure_results: allure-results
           allure_history: allure-history
@@ -49,4 +50,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-history
+          publish_dir: allure-history # Публикуем всю папку с историей и корнем index.html
