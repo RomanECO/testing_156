@@ -4,8 +4,11 @@ on:
   push:
     branches: [ main ]
 
+# Этот блок принудительно открывает доступ к созданию веток и страниц GitHub Pages!
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -34,11 +37,12 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages-dir
+        continue-on-error: true # Если ветки еще нет, этот шаг не сломает сборку
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
         if: always()
-        id: allure-report  # Добавлен ID для связи шагов
+        id: allure-report
         with:
           allure_results: allure-results
           allure_history: allure-history
@@ -50,5 +54,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-history # Публикуем всю папку с историей и корнем index.html
+          publish_dir: allure-history
           force_orphan: true
