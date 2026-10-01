@@ -51,3 +51,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history # Публикуем всю папку с историей и корнем index.html
+          force_orphan: true
