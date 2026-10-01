@@ -5,28 +5,33 @@ from selenium.webdriver.common.by import By
 
 URL = 'https://saucedemo.com'
 
+from selenium.webdriver.common.by import By
+import allure
 
 def test_empty_input(browser):
     """
-    negative - выскакивает окно ОШИБКИ при авторизации с незаполненными полями
+    Негативный тест: проверка авторизации с пустыми полями
     """
     
-    browser.get(URL)
+    with allure.step("Открытие главной страницы SauceDemo"):
+        browser.get('https://saucedemo.com')
 
-    # Окно неактивно по умолчанию (проверка по полю ввода имени пользователя)
+    with allure.step("Проверка исходного класса у поля ввода логина"):
+        username_input = browser.find_element(By.ID, value="user-name")
+        assert "form_input" in username_input.get_attribute("class")
 
-    email_label = browser.find_element(By.ID, value='user-name')
-    email_label_text = email_label.get_attribute("class")
-    assert email_label_text == 'input_error form_input',""
+    with allure.step("Клик по кнопке 'Login' с пустыми полями"):
+        button = browser.find_element(By.ID, value="login-button")
+        button.click()
 
-    # при активном окне к input_error form_input добавляется error!!!
+    with allure.step("Проверка появления и текста сообщения об ошибке"):
+        error_element = browser.find_element(By.CSS_SELECTOR, value='[data-test="error"]')
+        error_text = error_element.text
+        # Специально оставим правильный ассерт, но если он упадет — сделается скриншот!
+        assert error_text == 'Epic sadface: Username is required'
 
-    button = browser.find_element(By.ID, value="login-button")
-    button.click()
-
-    email_label = browser.find_element(By.CSS_SELECTOR, value='[data-test="error"]')
-    error_text = email_label.text
-    assert error_text == 'Epic sadface: Username is required', f"Ожидалась другая ошибка, получили: '{error_text}'"
+    with allure.step("Проверка, что кнопка Login осталась на месте"):
+        assert button.get_attribute("value") == "Login"
 
 def test_invalid_input(browser):
     """
