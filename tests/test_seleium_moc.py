@@ -222,7 +222,7 @@ def test_postive_buy(browser):
         actual_item_in_cart = WebDriverWait(browser, 10).until(
             EC.visibility_of_element_located((By.CSS_SELECTOR, ".inventory_item_name"))
         )
-        
+        # Свежий прогон
         print(f"\n[ТОВАР] Фактический товар в корзине: {actual_item_in_cart.text}")
         assert actual_item_in_cart.text == "Sauce Labs Backpack", "Не найден искомый товар"
 
