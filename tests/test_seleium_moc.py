@@ -216,7 +216,7 @@ def test_postive_buy(browser):
         button_2 = browser.find_element(By.CSS_SELECTOR, value=".shopping_cart_link")
         button_2.click()
 
-    with allure.step("Проверка наличия рюкзака внутри корзины"):
+    with allure.step("Проверка наличия рюкзака внутри корзины с товаром"):
         # Ждем до 10 секунд, пока элемент появится в новом DOM-дереве страницы
         # и станет полностью доступен для взаимодействия
         actual_item_in_cart = WebDriverWait(browser, 10).until(
