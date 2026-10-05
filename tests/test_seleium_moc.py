@@ -3,7 +3,8 @@
 """
 # Force push for Allure update 2026
 
-from selenium.webdriver.common.by import By 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 URL = 'https://saucedemo.com'
 
@@ -216,7 +217,12 @@ def test_postive_buy(browser):
         button_2.click()
 
     with allure.step("Проверка наличия рюкзака внутри корзины"):
-        actual_item_in_cart = browser.find_element(By.CSS_SELECTOR, value=".inventory_item_name")
+        # Ждем до 10 секунд, пока элемент появится в новом DOM-дереве страницы
+        # и станет полностью доступен для взаимодействия
+        actual_item_in_cart = WebDriverWait(browser, 10).until(
+            EC.presence_of_element_to_be_located((By.CSS_SELECTOR, ".inventory_item_name"))
+        )
+        
+        # Теперь метод .text отработает без ошибок устаревания
         assert actual_item_in_cart.text == "Sauce Labs Backpack", "Не найден искомый товар"
-
 
