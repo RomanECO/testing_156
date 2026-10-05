@@ -176,7 +176,7 @@ def test_postive_buy(browser):
     """
     positive - добавление товара в корзину
     """
-    
+    browser.delete_all_cookies()
     with allure.step("Открытие главной страницы магазина"):
         browser.get(URL)
 

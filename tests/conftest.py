@@ -27,7 +27,7 @@ def browser(request):
             name="Screenshot_on_failure",
             attachment_type=allure.attachment_type.PNG
         )
-    
+    driver.delete_all_cookies()
     driver.quit()
 
 # Вспомогательный хук для PyTest, чтобы фикстура знала о результате теста
