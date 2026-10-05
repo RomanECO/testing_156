@@ -35,7 +35,7 @@ def test_empty_input(browser):
 
 def test_invalid_input(browser):
     """
-    negative - выскакивает окно ОШИБКИ при авторизации с невалидными данными
+    negative - появление окна ОШИБКА при авторизации с невалидными данными
     """
     
     browser.get(URL)
@@ -88,7 +88,7 @@ def test_send_password(browser):
 
 def test_button_text(browser):
     """
-    Hа кнопке логин написано Login
+    Проверка того, что на кнопке логин написано Login
     """
     browser.get(URL)
 
@@ -97,7 +97,7 @@ def test_button_text(browser):
 
 def test_button_color(browser):
     """
-    ПРОВЕРКА ЦВЕТА КНОПКИ
+    ПРОВЕРКА ЦВЕТА КНОПКИ Login
     """
     browser.get(URL)
 
@@ -118,7 +118,7 @@ def test_button_color(browser):
 
 def test_area_color(browser):
     """
-    ПРОВЕРКА ЦВЕТА ПОЛЯ
+    ПРОВЕРКА ЦВЕТА ПОЛЯ ЗАГЛАВНОЙ СТРАНИИЦЫ
     """
     browser.get(URL)
 
