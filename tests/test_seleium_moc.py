@@ -170,3 +170,53 @@ def test_font_properties(browser):
         
     expected_center = "center"  # Центровка по требованиям
     assert actual_center == expected_center, f"Ожидали размер {expected_center}, но получили: {actual_center}"
+
+def test_postive_buy(browser):
+    """
+    positive - добавление товара в корзину
+    """
+    
+    with allure.step("Открытие главной страницы магазина"):
+        browser.get(URL)
+
+    with allure.step("Авторизация под пользователем standard_user"):
+        username = browser.find_element(By.ID, value="user-name")
+        username.click()
+        username.send_keys("standard_user")
+
+        password = browser.find_element(By.ID, value="password")
+        password.click()
+        password.send_keys("secret_sauce")
+
+        button = browser.find_element(By.ID, value="login-button")
+        button.click()
+
+    with allure.step("Добавление рюкзака 'Sauce Labs Backpack' в корзину"):
+        item_add_chart = browser.find_element(By.ID, value="add-to-cart-sauce-labs-backpack") 
+        item_add_chart.click()
+
+    with allure.step("Проверка изменения текста кнопки на 'Remove'"):
+        remove_item_tx = browser.find_element(By.ID, value="remove-sauce-labs-backpack")
+        assert remove_item_tx.text == "Remove", "Ошибка текста удаления товара из корзины"
+
+    with allure.step("Проверка красного цвета текста кнопки Remove"):
+        remove_item_button = browser.find_element(By.CSS_SELECTOR, value=".btn.btn_secondary.btn_small.btn_inventory")
+        
+        # Получаем значение CSS-свойства color (цвет текста)
+        remove_item_color = remove_item_button.value_of_css_property("color")
+        print(f"\n[ЦВЕТ] Фактический цвет текста кнопки: {remove_item_color}")
+       
+        # На сайте текст кнопки Remove имеет красный цвет (в формате rgba)
+        expected_color_1 = "rgba(226, 35, 26, 1)" 
+           
+        assert remove_item_color == expected_color_1, f"Цвет поля изменился! Ожидали {expected_color_1}, но получили {remove_item_color}"
+
+    with allure.step("Переход в корзину"):
+        button_2 = browser.find_element(By.CSS_SELECTOR, value=".shopping_cart_link")
+        button_2.click()
+
+    with allure.step("Проверка наличия рюкзака внутри корзины"):
+        actual_item_in_cart = browser.find_element(By.CSS_SELECTOR, value=".inventory_item_name")
+        assert actual_item_in_cart.text == "Sauce Labs Backpack", "Не найден искомый товар"
+
+

@@ -9,7 +9,7 @@ def browser(request):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('start-maximized')
-    chrome_options.add_argument('--headless=new')  # Не забывайте для GitHub Actions!
+    chrome_options.add_argument('--headless=new')  # настройка для GitHub Actions!
     chrome_options.add_experimental_option("detach", True)
 
     driver = webdriver.Chrome(options=chrome_options)
