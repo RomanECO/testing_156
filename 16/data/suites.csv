@@ -1,0 +1,25 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+    ПРОВЕРКА ЦВЕТА КНОПКИ Login
+    ","292","test_button_color","tests","2026-10-07","passed","2026-10-07","","test_seleium_moc","",""
+"
+    Проверка того, что на кнопке логин написано Login
+    ","285","test_button_text","tests","2026-10-07","passed","2026-10-07","","test_seleium_moc","",""
+"
+    negative - появление окна ОШИБКА при авторизации с невалидными данными
+    ","628","test_invalid_input","tests","2026-10-07","passed","2026-10-07","","test_seleium_moc","",""
+"
+    positive - регистрация с валидными данными
+    ","605","test_send_password","tests","2026-10-07","passed","2026-10-07","","test_seleium_moc","",""
+"
+    ПРОВЕРКА ЦВЕТА ПОЛЯ ЗАГЛАВНОЙ СТРАНИИЦЫ
+    ","286","test_area_color","tests","2026-10-07","passed","2026-10-07","","test_seleium_moc","",""
+"
+    positive - добавление товара в корзину
+    ","711","test_postive_buy","tests","2026-10-07","passed","2026-10-07","","test_seleium_moc","",""
+"
+    Проверка размера, центровки и семейства шрифта элемента (заголовка странцы) в одном тесте
+    ","296","test_font_properties","tests","2026-10-07","passed","2026-10-07","","test_seleium_moc","",""
+"
+    Негативный тест: проверка авторизации с пустыми полями
+    ","1133","test_empty_input","tests","2026-10-07","passed","2026-10-07","","test_seleium_moc","",""
